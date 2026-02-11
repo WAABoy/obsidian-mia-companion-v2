@@ -1,0 +1,11 @@
+{
+  "id": "mia-companion-v2",
+  "name": "Mia Companion V2",
+  "version": "2.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Your AI companion Mia with Google Calendar, Tasks, and writing goals",
+  "author": "Big Bro & Mia",
+  "authorUrl": "https://github.com/WAABoy",
+  "fundingUrl": "",
+  "isDesktopOnly": false
+}

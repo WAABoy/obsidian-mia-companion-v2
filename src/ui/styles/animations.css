@@ -1,0 +1,624 @@
+/**
+ * Mia Companion - Animations & Transitions
+ * Sakura Theme Animations
+ */
+
+/* =============================================
+   FALLING PETAL ANIMATION
+   ============================================= */
+@keyframes mia-petal-fall {
+  0% {
+    transform: translateY(-10%) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(25%) rotate(90deg) translateX(20px);
+  }
+  50% {
+    transform: translateY(50%) rotate(180deg) translateX(-10px);
+  }
+  75% {
+    transform: translateY(75%) rotate(270deg) translateX(15px);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110%) rotate(360deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes mia-petal-sway {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(15px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-15px) rotate(-5deg);
+  }
+}
+
+@keyframes mia-petal-fall-sway {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(25vh) translateX(30px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-20px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(75vh) translateX(25px) rotate(270deg);
+  }
+  95% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(110vh) translateX(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.mia-petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: var(--mia-z-petal);
+}
+
+.mia-petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, var(--mia-primary) 0%, var(--mia-secondary) 100%);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0;
+  animation: mia-petal-fall-sway linear infinite;
+  filter: blur(0.5px);
+}
+
+.mia-petal:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; transform: scale(0.8); }
+.mia-petal:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; transform: scale(0.6); }
+.mia-petal:nth-child(3) { left: 25%; animation-duration: 11s; animation-delay: 4s; transform: scale(0.9); }
+.mia-petal:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 1s; transform: scale(0.7); }
+.mia-petal:nth-child(5) { left: 45%; animation-duration: 13s; animation-delay: 3s; transform: scale(0.8); }
+.mia-petal:nth-child(6) { left: 55%; animation-duration: 16s; animation-delay: 5s; transform: scale(0.6); }
+.mia-petal:nth-child(7) { left: 65%; animation-duration: 10s; animation-delay: 2s; transform: scale(0.9); }
+.mia-petal:nth-child(8) { left: 75%; animation-duration: 13s; animation-delay: 4s; transform: scale(0.7); }
+.mia-petal:nth-child(9) { left: 85%; animation-duration: 15s; animation-delay: 1s; transform: scale(0.8); }
+.mia-petal:nth-child(10) { left: 95%; animation-duration: 11s; animation-delay: 3s; transform: scale(0.6); }
+
+/* Alternative petal shapes */
+.mia-petal.type-2 {
+  border-radius: 50% 50% 0 50%;
+  background: linear-gradient(225deg, var(--mia-secondary) 0%, var(--mia-primary) 100%);
+}
+
+.mia-petal.type-3 {
+  border-radius: 0 50% 50% 50%;
+  background: linear-gradient(45deg, var(--mia-accent-soft) 0%, var(--mia-primary) 100%);
+}
+
+/* =============================================
+   PROGRESS BAR ANIMATIONS
+   ============================================= */
+@keyframes mia-progress-fill {
+  from {
+    width: 0%;
+  }
+}
+
+@keyframes mia-progress-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes mia-progress-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--mia-accent), 0 0 10px var(--mia-accent);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--mia-accent), 0 0 20px var(--mia-accent), 0 0 30px var(--mia-primary);
+  }
+}
+
+.mia-progress-fill {
+  animation: mia-progress-fill 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mia-progress-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: mia-progress-shimmer 2s infinite;
+}
+
+.mia-progress-glow {
+  animation: mia-progress-glow 2s ease-in-out infinite;
+}
+
+/* =============================================
+   STREAK COUNTER ANIMATIONS
+   ============================================= */
+@keyframes mia-streak-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.8));
+  }
+}
+
+@keyframes mia-streak-flame {
+  0%, 100% {
+    transform: scale(1) rotate(-2deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(2deg);
+    filter: hue-rotate(10deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(-1deg);
+    filter: hue-rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(1deg);
+    filter: hue-rotate(5deg);
+  }
+}
+
+@keyframes mia-number-count {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mia-streak-icon {
+  animation: mia-streak-flame 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.mia-streak-number {
+  animation: mia-number-count 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.mia-streak-milestone {
+  animation: mia-streak-pulse 1s ease-in-out infinite;
+}
+
+/* =============================================
+   CARD HOVER ANIMATIONS
+   ============================================= */
+@keyframes mia-card-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes mia-card-shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.mia-card-float {
+  animation: mia-card-float 3s ease-in-out infinite;
+}
+
+.mia-card-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: mia-card-shine 3s ease-in-out infinite;
+}
+
+/* =============================================
+   BUTTON ANIMATIONS
+   ============================================= */
+@keyframes mia-btn-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 105, 180, 0);
+  }
+}
+
+@keyframes mia-btn-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.mia-btn-pulse {
+  animation: mia-btn-pulse 2s ease-in-out infinite;
+}
+
+.mia-btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.mia-btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.mia-btn-ripple:active::after {
+  animation: mia-btn-ripple 0.6s ease-out;
+}
+
+/* =============================================
+   TAB SWITCHING ANIMATIONS
+   ============================================= */
+@keyframes mia-tab-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mia-tab-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mia-content-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mia-tab-content {
+  animation: mia-tab-fade-in 0.3s ease-out forwards;
+}
+
+.mia-content-animate {
+  animation: mia-content-slide-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mia-content-animate-delay-1 { animation-delay: 0.1s; }
+.mia-content-animate-delay-2 { animation-delay: 0.2s; }
+.mia-content-animate-delay-3 { animation-delay: 0.3s; }
+.mia-content-animate-delay-4 { animation-delay: 0.4s; }
+
+/* =============================================
+   STATS COUNTER ANIMATIONS
+   ============================================= */
+@keyframes mia-stat-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes mia-stat-increment {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mia-stat-pop {
+  animation: mia-stat-pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.mia-stat-increment {
+  animation: mia-stat-increment 0.3s ease-out forwards;
+}
+
+/* =============================================
+   NOTIFICATION ANIMATIONS
+   ============================================= */
+@keyframes mia-notification-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mia-notification-fade-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes mia-notification-bounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+.mia-notification-enter {
+  animation: mia-notification-slide-in 0.3s ease-out forwards;
+}
+
+.mia-notification-exit {
+  animation: mia-notification-fade-out 0.3s ease-in forwards;
+}
+
+.mia-notification-bounce {
+  animation: mia-notification-bounce 0.5s ease-in-out;
+}
+
+/* =============================================
+   LOADING ANIMATIONS
+   ============================================= */
+@keyframes mia-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mia-dots-pulse {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes mia-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.mia-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--mia-border);
+  border-top-color: var(--mia-accent);
+  border-radius: 50%;
+  animation: mia-spinner 1s linear infinite;
+}
+
+.mia-dots-loading {
+  display: flex;
+  gap: 4px;
+}
+
+.mia-dots-loading span {
+  width: 8px;
+  height: 8px;
+  background: var(--mia-accent);
+  border-radius: 50%;
+  animation: mia-dots-pulse 1.4s ease-in-out infinite;
+}
+
+.mia-dots-loading span:nth-child(1) { animation-delay: 0s; }
+.mia-dots-loading span:nth-child(2) { animation-delay: 0.2s; }
+.mia-dots-loading span:nth-child(3) { animation-delay: 0.4s; }
+
+.mia-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--mia-bg-secondary) 25%,
+    var(--mia-bg-tertiary) 50%,
+    var(--mia-bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: mia-skeleton-shimmer 1.5s infinite;
+  border-radius: var(--mia-radius-md);
+}
+
+/* =============================================
+   CELEBRATION ANIMATIONS
+   ============================================= */
+@keyframes mia-celebrate-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+@keyframes mia-celebrate-confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes mia-celebrate-scale {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mia-celebrate {
+  animation: mia-celebrate-bounce 0.8s ease-in-out;
+}
+
+.mia-celebrate-scale {
+  animation: mia-celebrate-scale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* =============================================
+   HOVER MICRO-INTERACTIONS
+   ============================================= */
+.mia-hover-lift {
+  transition: transform var(--mia-transition-fast);
+}
+
+.mia-hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.mia-hover-scale {
+  transition: transform var(--mia-transition-fast);
+}
+
+.mia-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.mia-hover-glow {
+  transition: box-shadow var(--mia-transition-fast);
+}
+
+.mia-hover-glow:hover {
+  box-shadow: 0 0 15px var(--mia-shadow-lg);
+}
+
+/* =============================================
+   FOCUS STATES
+   ============================================= */
+.mia-focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--mia-accent-soft);
+}
+
+.mia-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--mia-accent-soft);
+}
+
+/* =============================================
+   REDUCED MOTION SUPPORT
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .mia-petals-container {
+    display: none;
+  }
+}

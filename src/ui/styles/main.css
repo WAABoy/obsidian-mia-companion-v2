@@ -1,0 +1,491 @@
+/**
+ * Mia Companion - Global Styles
+ * Sakura Theme with Dark/Light Mode Support
+ */
+
+/* =============================================
+   CSS VARIABLES - Sakura Theme
+   ============================================= */
+.mia-companion-view {
+  /* Sakura Color Palette */
+  --mia-primary: #ffb7c5;
+  --mia-secondary: #ffd1dc;
+  --mia-accent: #ff69b4;
+  --mia-accent-hover: #ff1493;
+  --mia-accent-soft: rgba(255, 105, 180, 0.15);
+  
+  /* Light Mode Base */
+  --mia-bg-primary: #ffffff;
+  --mia-bg-secondary: #fef9fb;
+  --mia-bg-tertiary: #fff5f7;
+  --mia-bg-card: #ffffff;
+  --mia-bg-hover: rgba(255, 183, 197, 0.1);
+  --mia-bg-active: rgba(255, 105, 180, 0.15);
+  
+  --mia-text-primary: #2d2d2d;
+  --mia-text-secondary: #6b7280;
+  --mia-text-muted: #9ca3af;
+  --mia-text-accent: #ff69b4;
+  
+  --mia-border: #ffe4e9;
+  --mia-border-hover: #ffb7c5;
+  --mia-shadow: rgba(255, 183, 197, 0.2);
+  --mia-shadow-lg: rgba(255, 183, 197, 0.3);
+  
+  /* Gradients */
+  --mia-gradient-primary: linear-gradient(135deg, #ffb7c5 0%, #ffd1dc 50%, #ff69b4 100%);
+  --mia-gradient-soft: linear-gradient(135deg, rgba(255, 183, 197, 0.2) 0%, rgba(255, 209, 220, 0.2) 100%);
+  --mia-gradient-card: linear-gradient(145deg, #ffffff 0%, #fff5f7 100%);
+  
+  /* Typography */
+  --mia-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mia-font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  
+  /* Spacing */
+  --mia-space-xs: 4px;
+  --mia-space-sm: 8px;
+  --mia-space-md: 16px;
+  --mia-space-lg: 24px;
+  --mia-space-xl: 32px;
+  --mia-space-2xl: 48px;
+  
+  /* Border Radius */
+  --mia-radius-sm: 6px;
+  --mia-radius-md: 12px;
+  --mia-radius-lg: 16px;
+  --mia-radius-xl: 24px;
+  --mia-radius-full: 9999px;
+  
+  /* Transitions */
+  --mia-transition-fast: 150ms ease;
+  --mia-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --mia-transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --mia-transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Z-Index Scale */
+  --mia-z-base: 1;
+  --mia-z-dropdown: 100;
+  --mia-z-sticky: 200;
+  --mia-z-modal: 300;
+  --mia-z-petal: 10;
+}
+
+/* Dark Mode Overrides */
+.theme-dark .mia-companion-view,
+.mia-companion-view.mia-dark-mode {
+  --mia-bg-primary: #1a1a1f;
+  --mia-bg-secondary: #232329;
+  --mia-bg-tertiary: #2a2a32;
+  --mia-bg-card: #232329;
+  --mia-bg-hover: rgba(255, 183, 197, 0.08);
+  --mia-bg-active: rgba(255, 105, 180, 0.12);
+  
+  --mia-text-primary: #f0f0f5;
+  --mia-text-secondary: #a0a0b0;
+  --mia-text-muted: #6b6b7b;
+  --mia-text-accent: #ff8dc7;
+  
+  --mia-border: #3a3a45;
+  --mia-border-hover: #ff8dc7;
+  --mia-shadow: rgba(0, 0, 0, 0.3);
+  --mia-shadow-lg: rgba(0, 0, 0, 0.4);
+  
+  --mia-gradient-card: linear-gradient(145deg, #232329 0%, #2a2a32 100%);
+  
+  /* Adjusted Sakura colors for dark mode */
+  --mia-primary: #ff8dc7;
+  --mia-secondary: #ffb7d5;
+  --mia-accent: #ff69b4;
+}
+
+/* =============================================
+   BASE STYLES
+   ============================================= */
+.mia-companion-view {
+  font-family: var(--mia-font-sans);
+  color: var(--mia-text-primary);
+  background: var(--mia-bg-primary);
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.mia-companion-view * {
+  box-sizing: border-box;
+}
+
+/* =============================================
+   SCROLLBAR STYLING
+   ============================================= */
+.mia-companion-view::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.mia-companion-view::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mia-companion-view::-webkit-scrollbar-thumb {
+  background: var(--mia-primary);
+  border-radius: var(--mia-radius-full);
+  opacity: 0.5;
+}
+
+.mia-companion-view::-webkit-scrollbar-thumb:hover {
+  background: var(--mia-accent);
+}
+
+/* =============================================
+   LAYOUT COMPONENTS
+   ============================================= */
+.mia-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--mia-space-lg);
+}
+
+.mia-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--mia-space-lg) 0;
+  margin-bottom: var(--mia-space-xl);
+  border-bottom: 1px solid var(--mia-border);
+}
+
+.mia-header-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: var(--mia-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.mia-header-subtitle {
+  color: var(--mia-text-secondary);
+  font-size: 0.875rem;
+  margin-top: var(--mia-space-xs);
+}
+
+/* =============================================
+   CARD COMPONENTS
+   ============================================= */
+.mia-card {
+  background: var(--mia-bg-card);
+  border: 1px solid var(--mia-border);
+  border-radius: var(--mia-radius-lg);
+  padding: var(--mia-space-lg);
+  transition: all var(--mia-transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.mia-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--mia-gradient-primary);
+  opacity: 0;
+  transition: opacity var(--mia-transition-base);
+}
+
+.mia-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--mia-shadow);
+  border-color: var(--mia-border-hover);
+}
+
+.mia-card:hover::before {
+  opacity: 1;
+}
+
+.mia-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--mia-space-md);
+}
+
+.mia-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mia-text-primary);
+  margin: 0;
+}
+
+.mia-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--mia-radius-md);
+  background: var(--mia-gradient-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* =============================================
+   BUTTON COMPONENTS
+   ============================================= */
+.mia-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mia-space-sm);
+  padding: var(--mia-space-sm) var(--mia-space-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--mia-radius-md);
+  cursor: pointer;
+  transition: all var(--mia-transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mia-btn-primary {
+  background: var(--mia-gradient-primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
+}
+
+.mia-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+}
+
+.mia-btn-primary:active {
+  transform: translateY(0);
+}
+
+.mia-btn-secondary {
+  background: var(--mia-bg-secondary);
+  color: var(--mia-text-primary);
+  border: 1px solid var(--mia-border);
+}
+
+.mia-btn-secondary:hover {
+  background: var(--mia-bg-hover);
+  border-color: var(--mia-border-hover);
+}
+
+.mia-btn-ghost {
+  background: transparent;
+  color: var(--mia-text-secondary);
+}
+
+.mia-btn-ghost:hover {
+  background: var(--mia-bg-hover);
+  color: var(--mia-text-primary);
+}
+
+.mia-btn-sm {
+  padding: var(--mia-space-xs) var(--mia-space-sm);
+  font-size: 0.75rem;
+}
+
+.mia-btn-lg {
+  padding: var(--mia-space-md) var(--mia-space-lg);
+  font-size: 1rem;
+}
+
+.mia-btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--mia-radius-md);
+}
+
+/* =============================================
+   TAB NAVIGATION
+   ============================================= */
+.mia-tabs {
+  display: flex;
+  gap: var(--mia-space-xs);
+  padding: var(--mia-space-xs);
+  background: var(--mia-bg-secondary);
+  border-radius: var(--mia-radius-xl);
+  margin-bottom: var(--mia-space-lg);
+}
+
+.mia-tab {
+  padding: var(--mia-space-sm) var(--mia-space-md);
+  border: none;
+  background: transparent;
+  color: var(--mia-text-secondary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--mia-radius-md);
+  cursor: pointer;
+  transition: all var(--mia-transition-fast);
+  position: relative;
+}
+
+.mia-tab:hover {
+  color: var(--mia-text-primary);
+  background: var(--mia-bg-hover);
+}
+
+.mia-tab.active {
+  color: var(--mia-text-accent);
+  background: var(--mia-bg-primary);
+  box-shadow: 0 2px 8px var(--mia-shadow);
+}
+
+.mia-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--mia-accent);
+  border-radius: var(--mia-radius-full);
+}
+
+/* =============================================
+   GRID LAYOUTS
+   ============================================= */
+.mia-grid {
+  display: grid;
+  gap: var(--mia-space-lg);
+}
+
+.mia-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.mia-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mia-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .mia-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .mia-grid-2,
+  .mia-grid-3,
+  .mia-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
+.mia-flex {
+  display: flex;
+}
+
+.mia-flex-col {
+  flex-direction: column;
+}
+
+.mia-items-center {
+  align-items: center;
+}
+
+.mia-justify-between {
+  justify-content: space-between;
+}
+
+.mia-gap-sm {
+  gap: var(--mia-space-sm);
+}
+
+.mia-gap-md {
+  gap: var(--mia-space-md);
+}
+
+.mia-gap-lg {
+  gap: var(--mia-space-lg);
+}
+
+.mia-text-center {
+  text-align: center;
+}
+
+.mia-text-gradient {
+  background: var(--mia-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mia-mb-sm {
+  margin-bottom: var(--mia-space-sm);
+}
+
+.mia-mb-md {
+  margin-bottom: var(--mia-space-md);
+}
+
+.mia-mb-lg {
+  margin-bottom: var(--mia-space-lg);
+}
+
+/* =============================================
+   OBSIDIAN COMPATIBILITY
+   ============================================= */
+.mia-companion-view .view-content {
+  background: var(--mia-bg-primary);
+}
+
+.mia-companion-view .nav-folder-title,
+.mia-companion-view .nav-file-title {
+  color: var(--mia-text-primary);
+}
+
+.mia-companion-view .nav-folder-title:hover,
+.mia-companion-view .nav-file-title:hover {
+  background: var(--mia-bg-hover);
+}
+
+/* Ensure proper stacking with Obsidian's UI */
+.mia-companion-view {
+  z-index: var(--mia-z-base);
+}
+
+/* =============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================= */
+@media (max-width: 640px) {
+  .mia-container {
+    padding: var(--mia-space-md);
+  }
+  
+  .mia-header {
+    flex-direction: column;
+    gap: var(--mia-space-md);
+    text-align: center;
+  }
+  
+  .mia-header-title {
+    font-size: 1.5rem;
+  }
+  
+  .mia-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .mia-tab {
+    flex: 1;
+    min-width: 80px;
+  }
+}
