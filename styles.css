@@ -1,0 +1,516 @@
+/* Mia Companion V2 - Clean Architecture Styles */
+
+/* Root Variables */
+:root {
+  --mia-primary: var(--interactive-accent, #7c3aed);
+  --mia-secondary: var(--text-muted, #6b7280);
+  --mia-bg: var(--background-primary, #ffffff);
+  --mia-bg-secondary: var(--background-secondary, #f3f4f6);
+  --mia-border: var(--background-modifier-border, #e5e7eb);
+  --mia-text: var(--text-normal, #1f2937);
+  --mia-text-muted: var(--text-muted, #6b7280);
+  --mia-success: #10b981;
+  --mia-warning: #f59e0b;
+  --mia-error: #ef4444;
+}
+
+/* ==================== Chat Panel Styles ==================== */
+.mia-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--mia-bg);
+}
+
+.mia-chat-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--mia-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mia-chat-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mia-text);
+}
+
+.mia-chat-connection-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--mia-text-muted);
+}
+
+.mia-chat-connection-status.connected {
+  color: var(--mia-success);
+}
+
+.mia-chat-connection-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--mia-text-muted);
+}
+
+.mia-chat-connection-status.connected::before {
+  background-color: var(--mia-success);
+}
+
+.mia-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mia-chat-message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.mia-chat-message.user {
+  align-self: flex-end;
+  background-color: var(--mia-primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.mia-chat-message.assistant {
+  align-self: flex-start;
+  background-color: var(--mia-bg-secondary);
+  color: var(--mia-text);
+  border-bottom-left-radius: 4px;
+}
+
+.mia-chat-message.system {
+  align-self: center;
+  background-color: transparent;
+  color: var(--mia-text-muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.mia-chat-message-time {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.mia-chat-input-container {
+  padding: 12px 16px;
+  border-top: 1px solid var(--mia-border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.mia-chat-input {
+  flex: 1;
+  min-height: 40px;
+  max-height: 120px;
+  padding: 10px 12px;
+  border: 1px solid var(--mia-border);
+  border-radius: 8px;
+  background-color: var(--mia-bg);
+  color: var(--mia-text);
+  font-size: 14px;
+  resize: none;
+  font-family: inherit;
+}
+
+.mia-chat-input:focus {
+  outline: none;
+  border-color: var(--mia-primary);
+}
+
+.mia-chat-send-button {
+  padding: 10px 16px;
+  background-color: var(--mia-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.mia-chat-send-button:hover {
+  opacity: 0.9;
+}
+
+.mia-chat-send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==================== Calendar View Styles ==================== */
+.mia-calendar-container {
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.mia-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mia-calendar-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--mia-text);
+}
+
+.mia-calendar-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.mia-calendar-nav-button {
+  padding: 6px 12px;
+  background-color: var(--mia-bg-secondary);
+  border: 1px solid var(--mia-border);
+  border-radius: 6px;
+  color: var(--mia-text);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mia-calendar-nav-button:hover {
+  background-color: var(--mia-border);
+}
+
+.mia-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.mia-calendar-day-header {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mia-text-muted);
+  padding: 8px;
+  text-transform: uppercase;
+}
+
+.mia-calendar-day {
+  aspect-ratio: 1;
+  border: 1px solid var(--mia-border);
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mia-calendar-day:hover {
+  background-color: var(--mia-bg-secondary);
+}
+
+.mia-calendar-day.other-month {
+  color: var(--mia-text-muted);
+  background-color: var(--mia-bg-secondary);
+}
+
+.mia-calendar-day.today {
+  background-color: rgba(124, 58, 237, 0.1);
+  border-color: var(--mia-primary);
+}
+
+.mia-calendar-day-number {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mia-calendar-day.today .mia-calendar-day-number {
+  color: var(--mia-primary);
+  font-weight: 700;
+}
+
+.mia-calendar-event {
+  font-size: 10px;
+  padding: 2px 4px;
+  background-color: var(--mia-primary);
+  color: white;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mia-calendar-event-more {
+  font-size: 9px;
+  color: var(--mia-text-muted);
+}
+
+/* ==================== Dashboard View Styles ==================== */
+.mia-dashboard-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mia-dashboard-header {
+  margin-bottom: 24px;
+}
+
+.mia-dashboard-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--mia-text);
+}
+
+.mia-dashboard-header p {
+  margin: 0;
+  color: var(--mia-text-muted);
+  font-size: 14px;
+}
+
+.mia-dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mia-dashboard-stat-card {
+  background-color: var(--mia-bg-secondary);
+  border: 1px solid var(--mia-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.mia-dashboard-stat-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mia-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mia-dashboard-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--mia-text);
+  margin-bottom: 4px;
+}
+
+.mia-dashboard-stat-change {
+  font-size: 12px;
+  color: var(--mia-success);
+}
+
+.mia-dashboard-stat-change.negative {
+  color: var(--mia-error);
+}
+
+.mia-dashboard-section {
+  background-color: var(--mia-bg-secondary);
+  border: 1px solid var(--mia-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.mia-dashboard-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mia-text);
+}
+
+.mia-dashboard-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.mia-dashboard-action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--mia-bg);
+  border: 1px solid var(--mia-border);
+  border-radius: 8px;
+  color: var(--mia-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mia-dashboard-action-button:hover {
+  border-color: var(--mia-primary);
+  background-color: rgba(124, 58, 237, 0.05);
+}
+
+.mia-dashboard-action-icon {
+  font-size: 24px;
+}
+
+/* ==================== Settings Styles ==================== */
+.mia-settings-section {
+  margin-bottom: 24px;
+}
+
+.mia-settings-section h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mia-text);
+  border-bottom: 1px solid var(--mia-border);
+  padding-bottom: 8px;
+}
+
+.mia-settings-info {
+  background-color: var(--mia-bg-secondary);
+  border-left: 4px solid var(--mia-primary);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 0 8px 8px 0;
+}
+
+.mia-settings-info p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--mia-text-muted);
+}
+
+/* ==================== Status Bar Styles ==================== */
+.mia-status-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.mia-status-bar-item:hover {
+  color: var(--text-normal);
+}
+
+.mia-status-bar-icon {
+  font-size: 14px;
+}
+
+/* ==================== Utility Styles ==================== */
+.mia-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--mia-text-muted);
+  font-size: 14px;
+}
+
+.mia-error {
+  padding: 16px;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--mia-error);
+  border-radius: 8px;
+  color: var(--mia-error);
+  font-size: 14px;
+}
+
+.mia-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  color: var(--mia-text-muted);
+}
+
+.mia-empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.mia-button {
+  padding: 8px 16px;
+  background-color: var(--mia-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.mia-button:hover {
+  opacity: 0.9;
+}
+
+.mia-button-secondary {
+  background-color: var(--mia-bg-secondary);
+  color: var(--mia-text);
+  border: 1px solid var(--mia-border);
+}
+
+.mia-button-secondary:hover {
+  background-color: var(--mia-border);
+}
+
+/* Scrollbar styling for chat */
+.mia-chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mia-chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mia-chat-messages::-webkit-scrollbar-thumb {
+  background-color: var(--mia-border);
+  border-radius: 3px;
+}
+
+.mia-chat-messages::-webkit-scrollbar-thumb:hover {
+  background-color: var(--mia-text-muted);
+}
+.mia-container {
+    padding: 16px;
+}
+
+.mia-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--text-normal);
+}
+
+.mia-card {
+    background: var(--background-secondary);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}

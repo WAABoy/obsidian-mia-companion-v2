@@ -1,0 +1,10 @@
+{
+  "id": "mia-v2-clean",
+  "name": "Mia Companion V2",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "A companion plugin for Mia with Google Calendar, Tasks, word tracking, and chat",
+  "author": "OpenClaw",
+  "authorUrl": "https://openclaw.io",
+  "isDesktopOnly": true
+}

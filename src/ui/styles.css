@@ -1,0 +1,17 @@
+.mia-container {
+    padding: 16px;
+}
+
+.mia-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--text-normal);
+}
+
+.mia-card {
+    background: var(--background-secondary);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}

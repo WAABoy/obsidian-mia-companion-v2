@@ -1,0 +1,25 @@
+{
+  "name": "mia-v2-clean",
+  "version": "1.0.0",
+  "description": "Mia Companion V2 - Clean Architecture Obsidian Plugin",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc -noEmit -skipLibCheck && esbuild src/main.ts --bundle --outfile=main.js --external:obsidian --format=cjs --platform=node",
+    "dev": "esbuild src/main.ts --bundle --outfile=main.js --external:obsidian --format=cjs --platform=node --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["obsidian", "plugin", "calendar", "tasks", "chat"],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.19.0",
+    "obsidian": "latest",
+    "tslib": "^2.6.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "googleapis": "^128.0.0",
+    "jsonwebtoken": "^9.0.0"
+  }
+}
